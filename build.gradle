@@ -13,5 +13,10 @@ repositories {
 dependencies {
     compile "commons-codec:commons-codec:1.9"
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    //added to learn spring data JPA
+    compile group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.1.0.RELEASE'
+    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.3.6.Final'
+    compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+    compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.0.13.Final'
 }
 
