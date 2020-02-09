@@ -1,9 +1,11 @@
 package com.n2.interview;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
+
 
 /**
  * Equals and inheritance - uneasy relationship. According to Joshua Bloch "there is no way to
@@ -27,15 +29,15 @@ public class A5EqualsAndInheritanceMartinOderskySolution {
     public void testEqualsSymmetryContractWithMixedTypes() {
         Point p = new Point(2, 3);
         ColorPoint cp = new ColorPoint(2, 3, 0);
-        assertTrue("Broken symmetry", p.equals(cp) == cp.equals(p));
+        assertTrue( p.equals(cp) == cp.equals(p), "Broken symmetry");
     }
 
     @Test
     public void testEqualsAndLiskovSubstitutionPrinciple() {
         ColorPoint cp = new ColorPoint(2, 3, 0);
         ColorPointDecorator cpd = new ColorPointDecorator(2, 3, 0);
-        assertTrue("Broken substitution principle", cp.equals(cpd));
-        assertTrue("Broken substitution principle", cpd.equals(cp));
+        assertTrue( cp.equals(cpd),"Broken substitution principle");
+        assertTrue( cpd.equals(cp), "Broken substitution principle");
     }
 
     @Test
@@ -43,8 +45,8 @@ public class A5EqualsAndInheritanceMartinOderskySolution {
         Point p1 = new Point(2, 3);
         Point p2 = new Point(2, 3);
         Point p3 = new Point(1, 1);
-        assertTrue("Points with same x and y must be equal", p1.equals(p2));
-        assertFalse("Points with different x or y must be not be equal", p1.equals(p3));
+        assertTrue(p1.equals(p2),"Points with same x and y must be equal");
+        assertFalse(p1.equals(p3),"Points with different x or y must be not be equal");
     }
 
     @Test
@@ -52,28 +54,28 @@ public class A5EqualsAndInheritanceMartinOderskySolution {
         ColorPoint cp1 = new ColorPoint(2, 3, 1);
         ColorPoint cp2 = new ColorPoint(2, 3, 1);
         ColorPoint cp3 = new ColorPoint(1, 1, 0);
-        assertTrue("Color points with same x,y and color must be equal", cp1.equals(cp2));
-        assertFalse("Color points with different x,y or color must be not be equal", cp1.equals(cp3));
-        assertFalse("Color points with different x,y or color must be not be equal",
-                cp1.equals(new ColorPoint(2, 3, 10)));
-        assertFalse("Color points with different x,y or color must be not be equal",
-                cp1.equals(new ColorPoint(10, 3, 1)));
+        assertTrue( cp1.equals(cp2), "Color points with same x,y and color must be equal");
+        assertFalse( cp1.equals(cp3), "Color points with different x,y or color must be not be equal");
+        assertFalse(
+                cp1.equals(new ColorPoint(2, 3, 10)), "Color points with different x,y or color must be not be equal");
+        assertFalse(
+                cp1.equals(new ColorPoint(10, 3, 1)), "Color points with different x,y or color must be not be equal");
     }
 
     @Test
     public void testReflexivityEqualsContract() {
         Point p = new Point(2, 3);
         ColorPoint cp = new ColorPoint(2, 3, 0);
-        assertTrue("Broken reflexivity", cp.equals(cp));
-        assertTrue("Broken reflexivity", p.equals(p));
+        assertTrue(cp.equals(cp), "Broken reflexivity");
+        assertTrue( p.equals(p), "Broken reflexivity");
     }
 
     @Test
     public void testMixedTypesWithAddedFieldsCannotEqual() {
         Point p = new Point(2, 3);
         ColorPoint cp = new ColorPoint(2, 3, 0);
-        assertFalse("Mixed types with added fields cannot equal", p.equals(cp));
-        assertFalse("Mixed types with added fields cannot equal", cp.equals(p));
+        assertFalse( p.equals(cp), "Mixed types with added fields cannot equal");
+        assertFalse( cp.equals(p), "Mixed types with added fields cannot equal");
         // Why this is not a Liskov Substitution Principle breach?
         // we genuinely assume here that blue ColorPoint is not equal colorless Point even if they
         // have got the same coordinates.
@@ -83,8 +85,8 @@ public class A5EqualsAndInheritanceMartinOderskySolution {
     public void testNullEqualsContract() {
         Point p = new Point(2, 3);
         ColorPoint cp = new ColorPoint(2, 3, 0);
-        assertFalse("Broken null contract, equals(null) must return false", p.equals(null));
-        assertFalse("Broken null contract, equals(null) must return false", cp.equals(null));
+        assertFalse( p.equals(null), "Broken null contract, equals(null) must return false");
+        assertFalse( cp.equals(null), "Broken null contract, equals(null) must return false");
     }
 
     //
