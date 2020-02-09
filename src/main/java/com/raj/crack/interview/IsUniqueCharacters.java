@@ -7,7 +7,6 @@ package com.raj.crack.interview;
 public class IsUniqueCharacters {
     public boolean isUnique(String word) {
         char[] chars = word.toCharArray();
-        char compareChar = 0;
         int length = chars.length;
         boolean result = true;
         outerloop:
