@@ -6,6 +6,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Page 90
+ * Cracking the Coding Interview, 6th Edition
+ * <p>
+ * Check Permutation: Given two strings, write a method to decide if one is a permutation of the other.
+ */
 public class TestPermutation {
 
     private IsPermutation isPermutation = new IsPermutation();
