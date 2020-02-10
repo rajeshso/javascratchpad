@@ -20,8 +20,68 @@ dependencies {
     compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.3.6.Final'
     compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
     compile group: 'org.hibernate.validator', name: 'hibernate-validator', version: '6.0.13.Final'
+    compile group: 'org.apache.commons', name: 'commons-collections4', version: '4.0'
 }
 test {
     useJUnitPlatform()
 }
+
+task hello {
+    println('hello')
+    doFirst {
+        println('hello from first')
+    }
+    doLast {
+        println('hello from doLast')
+    }
+}
+
+task("hi"){
+    println("hi")
+    description = "hi task"
+}
+
+task "task1"
+
+// run as ./gradlew task2
+task task2
+
+task task0 {
+    dependsOn task2
+    println('i am task 0')
+}
+
+task2.doLast {
+    println("this is task2 closure")
+}
+
+// the shortcut for doLast is <<
+task1 << {
+    println('I am the shortcut for doLast')
+}
+task1.description = "task 1 description"
+
+task1 << {
+    println('i am closure of task1')
+}
+
+def projectVersion = "2.0"
+project.ext.projectVersion = '3.0'
+
+task task3 {
+    description "This is Task 3" // this is executed in the configuration phase
+    def iamOnlyForTask3 = "yes"
+    doFirst {
+        println('This is task 3 doFirst first time and the project version is ' + projectVersion)
+        println('i am only for task 3 is '+iamOnlyForTask3)
+        println('i am across all gradle files across the project $projectVersion')
+    }
+    doLast { // Execute during the Execution phase
+        println('This is task 3')
+    }
+}
+
+task3.dependsOn task0
+
+// task3.dependsOn task0, task1
 
