@@ -12,6 +12,7 @@ public class TestUrlify {
     public void testUrlifyForSimpleString() {
         String given = "Mr John Smith    ";
         String expected = "Mr%20John%20Smith";
-        assertEquals(urlify.urlify(given), expected);
+        String actual = this.urlify.urlify(given);
+        assertEquals(expected, actual);
     }
 }

@@ -1,5 +1,7 @@
 package com.raj.crack.interview;
 
+import static java.lang.String.copyValueOf;
+
 /**
  * Page 90
  * Cracking the Coding Interview, 6th Edition
@@ -15,18 +17,24 @@ package com.raj.crack.interview;
  * Output: "Mr%20John%20Smith"
  */
 public class Urlify {
+    private static final char one = '%';
+    private static final char two = '2';
+    private static final char three = '0';
+
     public String urlify(String string) {
-        char[] chars = string.toCharArray();
-        int length = chars.length;
-        char[] result = new char[length];
-        for (int i = 0; i < length; ) {
-            if (chars[i] == ' ') {
-                //TODO: TO continue from here
+        char[] charsTrimmed = string.trim().toCharArray();
+        int length = charsTrimmed.length;
+        char[] result = new char[string.length()];
+        int resultCounter = 0;
+        for (int i = 0; i < length; i++) {
+            if (charsTrimmed[i] == ' ') {
+                result[resultCounter++] = one;
+                result[resultCounter++] = two;
+                result[resultCounter++] = three;
             } else {
-                result[i] = chars[i];
-                i++;
+                result[resultCounter++] = charsTrimmed[i];
             }
         }
-        return "";
+        return copyValueOf(result);
     }
 }
